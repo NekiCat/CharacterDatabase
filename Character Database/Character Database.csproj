@@ -52,6 +52,7 @@
     <Compile Include="CharacterForm.Designer.cs">
       <DependentUpon>CharacterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="IO\Settings.cs" />
     <Compile Include="IO\XmlLoader.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>

@@ -16,10 +16,21 @@ namespace Character_Database
     public partial class MainForm : Form
     {
         private List<ListViewItem> hiddenItems = new List<ListViewItem>();
+        private Settings settings;
 
         public MainForm()
         {
             InitializeComponent();
+
+            string folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Character Database");
+            if (!Directory.Exists(folder)) Directory.CreateDirectory(folder);
+
+            string filename = Path.Combine(folder, "settings.xml");
+            this.settings = new Settings(filename);
+
+            this.checkBox1.Checked = this.settings.SearchCaseSensitive;
+            this.checkBox2.Checked = this.settings.SearchWhenTyping;
+            this.splitContainer1.SplitterDistance = this.settings.MainSidebarWidth;
         }
 
         private static Image FixedSize(Image imgPhoto, int Width, int Height)
@@ -227,6 +238,7 @@ namespace Character_Database
 
         private void button2_Click(object sender, EventArgs e)
         {
+            textBox1.Text = "";
             ReleaseFilter();
         }
 
@@ -256,7 +268,6 @@ namespace Character_Database
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
             button1.Enabled = !checkBox2.Checked;
-            button2.Enabled = !checkBox2.Checked;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -277,6 +288,21 @@ namespace Character_Database
             string filename = Path.Combine(folder, "database.xml");
             XmlLoader loader = new XmlLoader();
             loader.Write(filename, characters);
+        }
+
+        private void checkBox2_Click(object sender, EventArgs e)
+        {
+            this.settings.SearchWhenTyping = checkBox2.Checked;
+        }
+
+        private void checkBox1_Click(object sender, EventArgs e)
+        {
+            this.settings.SearchCaseSensitive = checkBox1.Checked;
+        }
+
+        private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+            this.settings.MainSidebarWidth = this.splitContainer1.SplitterDistance;
         }
     }
 }
