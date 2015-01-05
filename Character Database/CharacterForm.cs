@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -43,6 +44,14 @@ namespace CharacterDatabase
             Character.Name = textBox1.Text;
             Character.Description = textBox2.Text;
             Character.Tags = textBox3.Text;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(Character.Picture))
+            {
+                Process.Start("explorer.exe", @"/select," + Character.Picture);
+            }
         }
     }
 }
