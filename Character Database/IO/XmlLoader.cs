@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace Character_Database.IO
+namespace CharacterDatabase.IO
 {
     class XmlLoader
     {

@@ -7,7 +7,7 @@
     <ProjectGuid>{AC784C0B-E80D-4643-80D8-E6D8954AA7F7}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Character_Database</RootNamespace>
+    <RootNamespace>CharacterDatabase</RootNamespace>
     <AssemblyName>Character Database</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

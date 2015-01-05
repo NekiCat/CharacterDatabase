@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Character_Database
+namespace CharacterDatabase
 {
     public partial class CharacterForm : Form
     {

@@ -1,4 +1,4 @@
-﻿using Character_Database.IO;
+﻿using CharacterDatabase.IO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Character_Database
+namespace CharacterDatabase
 {
     public partial class MainForm : Form
     {

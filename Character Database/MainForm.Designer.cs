@@ -1,4 +1,4 @@
-﻿namespace Character_Database
+﻿namespace CharacterDatabase
 {
     partial class MainForm
     {

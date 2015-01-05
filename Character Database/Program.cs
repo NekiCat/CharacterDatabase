@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Character_Database
+namespace CharacterDatabase
 {
     static class Program
     {
