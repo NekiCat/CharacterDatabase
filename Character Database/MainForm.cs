@@ -241,5 +241,22 @@ namespace Character_Database
                 characterLöschenToolStripMenuItem_Click(sender, e);
             }
         }
+
+        private void textBox1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (checkBox2.Checked)
+            {
+                if (textBox1.Text == String.Empty)
+                    ReleaseFilter();
+                else
+                    FilterCharacters(textBox1.Text);
+            }
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            button1.Enabled = !checkBox2.Checked;
+            button2.Enabled = !checkBox2.Checked;
+        }
     }
 }

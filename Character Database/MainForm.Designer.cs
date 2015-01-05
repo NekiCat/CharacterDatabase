@@ -40,6 +40,7 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.panel2.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -50,6 +51,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.checkBox2);
             this.panel2.Controls.Add(this.checkBox1);
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.button1);
@@ -57,14 +59,14 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(149, 123);
+            this.panel2.Size = new System.Drawing.Size(149, 151);
             this.panel2.TabIndex = 2;
             // 
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(12, 90);
+            this.button2.Location = new System.Drawing.Point(10, 113);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(134, 23);
             this.button2.TabIndex = 2;
@@ -76,7 +78,7 @@
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(12, 61);
+            this.button1.Location = new System.Drawing.Point(10, 84);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(134, 23);
             this.button1.TabIndex = 1;
@@ -92,6 +94,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(134, 20);
             this.textBox1.TabIndex = 0;
+            this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
             // 
             // listView2
             // 
@@ -165,6 +168,17 @@
             this.checkBox1.Text = "Groß-/Kleinschreibung";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(12, 61);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(94, 17);
+            this.checkBox2.TabIndex = 4;
+            this.checkBox2.Text = "Sofort Suchen";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -199,6 +213,7 @@
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
 
     }
 }
