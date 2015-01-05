@@ -181,9 +181,9 @@ namespace Character_Database
             loader.Write(filename, characters);
         }
 
-        private void FilterCharacters(string filter)
+        private void FilterCharacters(string filter, bool isFollowup = false)
         {
-            ReleaseFilter();
+            if (!isFollowup) ReleaseFilter();
             listView2.BeginUpdate();
 
             string[] tags = filter.Split(' ');
@@ -258,10 +258,10 @@ namespace Character_Database
         {
             if (checkBox2.Checked)
             {
-                if (textBox1.Text == String.Empty)
+                if ((e.KeyCode == Keys.Back || e.KeyCode == Keys.Delete) && textBox1.Text == String.Empty)
                     ReleaseFilter();
-                else
-                    FilterCharacters(textBox1.Text);
+                else if (Char.IsLetterOrDigit((char)e.KeyCode) || e.KeyCode == Keys.Back || e.KeyCode == Keys.Delete)
+                    FilterCharacters(textBox1.Text, e.KeyCode != Keys.Back && e.KeyCode != Keys.Delete);
             }
         }
 
