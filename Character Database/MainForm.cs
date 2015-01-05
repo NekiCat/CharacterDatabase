@@ -71,6 +71,10 @@ namespace Character_Database
         {
             var item = listView2.Items.Add("Neuer Character");
             item.Tag = new Character("Neuer Character");
+
+            listView2.SelectedItems.Clear();
+            item.Selected = true;
+            listView2_DoubleClick(sender, e);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -100,9 +104,19 @@ namespace Character_Database
 
         private void characterLöschenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach (ListViewItem item in listView2.SelectedItems)
+            if (listView2.SelectedItems.Count > 0)
             {
-                listView2.Items.Remove(item);
+                if (listView2.SelectedItems.Count == 1 &&
+                    MessageBox.Show("Willst du " + listView2.SelectedItems[0].Text + " wirklich löschen?", "Löschen",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes) return;
+                if (listView2.SelectedItems.Count > 1 &&
+                    MessageBox.Show("Willst du diese " + listView2.SelectedItems.Count + " Charaktere wirklich löschen?", "Löschen",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes) return;
+
+                foreach (ListViewItem item in listView2.SelectedItems)
+                {
+                    listView2.Items.Remove(item);
+                }
             }
         }
 
@@ -168,12 +182,26 @@ namespace Character_Database
 
                 foreach (string tag in tags)
                 {
-                    if (c.Tags.IndexOf(tag, StringComparison.CurrentCultureIgnoreCase) < 0)
+                    if (tag.StartsWith("-"))
                     {
-                        this.hiddenItems.Add(item);
-                        listView2.Items.Remove(item);
-                        break;
+                        var ctag = tag.Substring(1);
+                        if (c.Tags.IndexOf(ctag, checkBox1.Checked ? StringComparison.CurrentCulture : StringComparison.CurrentCultureIgnoreCase) >= 0)
+                        {
+                            hiddenItems.Add(item);
+                            listView2.Items.Remove(item);
+                            break;
+                        }
                     }
+                    else
+                    {
+                        if (c.Tags.IndexOf(tag, checkBox1.Checked ? StringComparison.CurrentCulture : StringComparison.CurrentCultureIgnoreCase) < 0)
+                        {
+                            this.hiddenItems.Add(item);
+                            listView2.Items.Remove(item);
+                            break;
+                        }
+                    }
+
                 }
             }
 
@@ -200,6 +228,18 @@ namespace Character_Database
         private void button2_Click(object sender, EventArgs e)
         {
             ReleaseFilter();
+        }
+
+        private void listView2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                listView2_DoubleClick(sender, e);
+            }
+            if (e.KeyCode == Keys.Delete)
+            {
+                characterLöschenToolStripMenuItem_Click(sender, e);
+            }
         }
     }
 }
