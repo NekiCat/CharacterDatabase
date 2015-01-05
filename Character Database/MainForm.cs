@@ -258,5 +258,25 @@ namespace Character_Database
             button1.Enabled = !checkBox2.Checked;
             button2.Enabled = !checkBox2.Checked;
         }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            var characters = new List<Character>();
+            foreach (ListViewItem item in listView2.Items)
+            {
+                characters.Add((Character)item.Tag);
+            }
+            foreach (ListViewItem item in hiddenItems)
+            {
+                characters.Add((Character)item.Tag);
+            }
+
+            string folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Character Database");
+            if (!Directory.Exists(folder)) Directory.CreateDirectory(folder);
+
+            string filename = Path.Combine(folder, "database.xml");
+            XmlLoader loader = new XmlLoader();
+            loader.Write(filename, characters);
+        }
     }
 }
