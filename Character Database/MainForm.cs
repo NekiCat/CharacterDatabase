@@ -17,6 +17,7 @@ namespace CharacterDatabase
     {
         private List<ListViewItem> hiddenItems = new List<ListViewItem>();
         private Settings settings;
+        private string previousSearch = "";
 
         public MainForm()
         {
@@ -254,14 +255,20 @@ namespace CharacterDatabase
             }
         }
 
-        private void textBox1_KeyUp(object sender, KeyEventArgs e)
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if (checkBox2.Checked)
+            if (this.settings.SearchWhenTyping)
             {
-                if ((e.KeyCode == Keys.Back || e.KeyCode == Keys.Delete) && textBox1.Text == String.Empty)
+                if (textBox1.Text == String.Empty)
+                {
                     ReleaseFilter();
-                else if (Char.IsLetterOrDigit((char)e.KeyCode) || e.KeyCode == Keys.Back || e.KeyCode == Keys.Delete)
-                    FilterCharacters(textBox1.Text, e.KeyCode != Keys.Back && e.KeyCode != Keys.Delete);
+                }
+                else
+                {
+                    FilterCharacters(textBox1.Text, this.textBox1.Text.StartsWith(this.previousSearch, this.settings.SearchCaseSensitive ? StringComparison.CurrentCulture : StringComparison.CurrentCultureIgnoreCase));
+                }
+
+                this.previousSearch = (sender as TextBox).Text;
             }
         }
 
