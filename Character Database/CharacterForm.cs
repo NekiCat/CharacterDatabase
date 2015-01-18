@@ -28,6 +28,11 @@ namespace CharacterDatabase
             textBox2.Text = Character.Description;
             textBox3.Text = Character.Tags;
             if (File.Exists(Character.Picture)) pictureBox1.Image = Image.FromFile(Character.Picture);
+
+            if (textBox1.Text == "Neuer Character")
+                textBox1.Select();
+            else
+                textBox2.Select();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
