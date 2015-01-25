@@ -32,7 +32,11 @@ namespace CharacterDatabase
             if (textBox1.Text == "Neuer Character")
                 textBox1.Select();
             else
+            {
                 textBox2.Select();
+                textBox2.SelectionLength = 0;
+                textBox2.SelectionStart = textBox2.Text.Length + 1;
+            }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
